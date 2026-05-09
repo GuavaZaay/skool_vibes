@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    height: 100%;
+    overscroll-behavior: none;
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+
+  #root {
+    height: 100%;
+  }
+}
+
+@layer components {
+  .btn-press {
+    @apply transition-transform duration-75 active:scale-95;
+  }
+
+  .card {
+    @apply bg-surface-secondary rounded-2xl p-4;
+  }
+
+  .card-elevated {
+    @apply bg-surface-tertiary rounded-2xl p-4;
+  }
+
+  .input-dark {
+    @apply bg-surface-tertiary border border-separator rounded-xl px-3 py-2 text-white placeholder-ios-gray outline-none focus:border-ios-blue transition-colors;
+  }
+
+  .sheet-handle {
+    @apply w-9 h-1 bg-surface-quaternary rounded-full mx-auto mb-4;
+  }
+
+  .tab-bar {
+    @apply fixed bottom-0 left-0 right-0 bg-surface-secondary/90 backdrop-blur-md border-t border-separator;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Smooth slide-up animation for bottom sheets */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease forwards;
+}
+
+/* Toast animation */
+@keyframes toastIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-toast {
+  animation: toastIn 0.25s ease forwards;
+}
+
+/* Court SVG interaction */
+.court-zone {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.court-zone:hover {
+  opacity: 0.35;
+}
+
+.court-zone:active {
+  opacity: 0.5;
+}
+
+/* Number input without spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
